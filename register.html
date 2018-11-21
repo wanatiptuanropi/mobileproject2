@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsenui.css">
+  <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsen-css-components.min.css">
+  <script src="https://unpkg.com/onsenui/js/onsenui.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+  <script src="ejs.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/5.5.7/firebase.js"></script>
+  <script src="cordova.js"></script>
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link href="https://fonts.googleapis.com/css?family=Dancing+Script" rel="stylesheet">
+  <script>
+    // Initialize Firebase
+    var config = {
+      apiKey: "AIzaSyBkV6GneqzKoulgZwTlReOYx6RZWIhJ5mo",
+      authDomain: "shopee-abf6a.firebaseapp.com",
+      databaseURL: "https://shopee-abf6a.firebaseio.com",
+      projectId: "shopee-abf6a",
+      storageBucket: "shopee-abf6a.appspot.com",
+      messagingSenderId: "568777659210"
+    };
+    firebase.initializeApp(config);
+
+  </script>
+  <style>
+    .toolbaricon {
+      padding-left: 5px;
+      padding-bottom: 5px;
+      padding-right: 5px;
+      color: orange;
+    }
+
+    
+  </style>
+</head>
+
+
+<body>
+
+
+  <ons-page>
+    <div style="text-align: center; margin-top: 50px;">
+
+      <div class="w3-container w3-center w3-animate-top">
+        <h1 style="color: rgb(136, 24, 80); font-family: 'Dancing Script', cursive;">REGISTER</h1>
+        
+      </div>
+      <p>
+        <ons-input style="margin-top: 50px" id="username" modifier="underbar" placeholder="Username" float></ons-input>
+      </p>
+      <p>
+        <ons-input id="password" modifier="underbar" type="password" placeholder="Password" float></ons-input>
+      </p>
+      <p style="margin-top: 30px;">
+        <ons-button onclick="register()">Sign in</ons-button>
+      </p>
+      <p style="margin-top: 50px;">
+        <a href="register.html">  </a>
+      </p>
+
+    </div>
+  </ons-page>
+
+
+
+  <script>
+
+    function register() {
+      var username = document.getElementById('username').value;
+      var password = document.getElementById('password').value;
+
+      firebase.auth().createUserWithEmailAndPassword(username, password).catch(function (error) {
+        // Handle Errors here.
+        var errorCode = error.code;
+        var errorMessage = error.message;
+        ons.notification.alert(errorCode + ':' + errorMessage);
+
+      });
+
+    }
+
+    firebase.auth().onAuthStateChanged(function (user) {
+      if (user) {
+        // User is signed in.
+        window.location.href = 'home.html';
+      }
+    });
+
+
+
+  </script>
+
+
+</body>
+
+</html>

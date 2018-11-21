@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsenui.css">
+    <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsen-css-components.min.css">
+    <script src="https://unpkg.com/onsenui/js/onsenui.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+    <script src="ejs.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.5.7/firebase.js"></script>
+    <script src="cordova.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script>
+        // Initialize Firebase
+        var config = {
+            apiKey: "AIzaSyBkV6GneqzKoulgZwTlReOYx6RZWIhJ5mo",
+            authDomain: "shopee-abf6a.firebaseapp.com",
+            databaseURL: "https://shopee-abf6a.firebaseio.com",
+            projectId: "shopee-abf6a",
+            storageBucket: "shopee-abf6a.appspot.com",
+            messagingSenderId: "568777659210"
+        };
+        firebase.initializeApp(config);
+
+    </script>
+    <style>
+        .toolbaricon {
+            padding-left: 5px;
+            padding-bottom: 5px;
+            padding-right: 5px;
+            color: orange;
+        }
+    </style>
+</head>
+
+
+<body>
+
+
+    <ons-page>
+        <div style="text-align: center; margin-top: 330px;">
+            <p style="margin-top: 30px">
+                <ons-button onclick="logout()" class="btn btn-info btn-lg">
+                    <span class="glyphicon glyphicon-log-out"></span>Log out</ons-button>
+            </p>
+
+        </div>
+    </ons-page>
+
+
+
+    <script>
+
+        function logout() {
+            firebase.auth().signOut().then(function () {
+
+                ons.notification.toast('Logout Complete', {
+                    timeout: 90000
+                });
+                window.location.href = 'login.html';
+
+            }).catch(function (error) {
+
+            });
+        }
+    </script>
+
+
+</body>
+
+</html>
